@@ -75,7 +75,7 @@ class OptionPricer(object):
 		self.window_color="gray10" #background color for toplevel, frames and labels
 		self.elements_color="gray25" #background color for elements in buttons and frames
 		self.entry_color="gray35" #background color for entries
-		self.text_color="gray70" #color of displayed text
+		self.text_color="gray99" #color of displayed text
 
 		#Creates a new window to define the details of the structure to be priced
 		self.OptionPricerWindow = Toplevel()
@@ -86,41 +86,41 @@ class OptionPricer(object):
 		self.OptionPricerWindow.resizable(False, False)
 
 		#adds the pricer's buttons
-		Button_AddLeg = Button(self.OptionPricerWindow, text="Add Leg", command= self.AddLeg, bg=self.elements_color, fg=self.text_color)
-		Button_RemoveLeg = Button(self.OptionPricerWindow, text="Remove Leg", command= self.RemoveLeg, bg=self.elements_color, fg=self.text_color)
-		Button_PriceStructure = Button(self.OptionPricerWindow, text="Price Structure", command= self.CreateOption, bg=self.elements_color, fg=self.text_color)
-		Button_PriceStructure.grid(column=0, row=0, columnspan=2, padx=5, pady=5)
-		Button_AddLeg.grid(column=0, row=7, padx=4, pady=5)
-		Button_RemoveLeg.grid(column=1, row=7, padx=2, pady=5)
-		PricingMethod=StringVar(self.OptionPricerWindow)
-		PricingMethod.set(OptionPricer.PricingMethodsOptionMenu[0])
-		Menu_PricingMethod=OptionMenu(self.OptionPricerWindow,PricingMethod,*OptionPricer.PricingMethodsOptionMenu)
-		Menu_PricingMethod.config(bg=self.elements_color, fg=self.text_color, activebackground=self.elements_color, activeforeground=self.text_color, width=16, highlightthickness=0)
-		Menu_PricingMethod["menu"].configure(bg=self.elements_color, fg=self.text_color)
-		Menu_PricingMethod.grid(column=0, row=8, columnspan=2, padx=2, pady=2)
+		self.Button_AddLeg = Button(self.OptionPricerWindow, text="Add Leg", command= self.AddLeg, bg=self.elements_color, fg=self.text_color)
+		self.Button_RemoveLeg = Button(self.OptionPricerWindow, text="Remove Leg", command= self.RemoveLeg, bg=self.elements_color, fg=self.text_color)
+		self.Button_PriceStructure = Button(self.OptionPricerWindow, text="Price Structure", command= self.CreateOption, bg=self.elements_color, fg=self.text_color)
+		self.Button_PriceStructure.grid(column=0, row=0, columnspan=2, padx=5, pady=5)
+		self.Button_AddLeg.grid(column=0, row=7, padx=4, pady=5)
+		self.Button_RemoveLeg.grid(column=1, row=7, padx=2, pady=5)
+		self.PricingMethod=StringVar(self.OptionPricerWindow)
+		self.PricingMethod.set(OptionPricer.PricingMethodsOptionMenu[0])
+		self.Menu_PricingMethod=OptionMenu(self.OptionPricerWindow,self.PricingMethod,*OptionPricer.PricingMethodsOptionMenu)
+		self.Menu_PricingMethod.config(bg=self.elements_color, fg=self.text_color, activebackground=self.elements_color, activeforeground=self.text_color, width=16, highlightthickness=0)
+		self.Menu_PricingMethod["menu"].configure(bg=self.elements_color, fg=self.text_color)
+		self.Menu_PricingMethod.grid(column=0, row=8, columnspan=2, padx=2, pady=2)
 
 		#Adds labels for the entries
-		self.OptionPricerLabels=Frame(self.OptionPricerWindow, bg=self.window_color, relief=SUNKEN)
+		self.OptionPricerLabels=Frame(self.OptionPricerWindow, bg=self.window_color)
 		self.OptionPricerLabels.grid(column=0, row=4, columnspan=2, padx=5, pady=5)
-		Label_Leg=Label(self.OptionPricerLabels,text="", bg=self.window_color, fg=self.text_color).grid(column=0, row=0)
-		Label_Strike=Label(self.OptionPricerLabels,text="Strike:", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=1)
-		Label_Time=Label(self.OptionPricerLabels,text="Expiry (in years): ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=2)
-		Label_Spot=Label(self.OptionPricerLabels,text="Underlying Price: ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=3)
-		Label_Vol=Label(self.OptionPricerLabels,text="Implied Volatility: ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=4)
-		Label_OptionType=Label(self.OptionPricerLabels,text="Option Type", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=5)
+		self.Label_Leg=Label(self.OptionPricerLabels,text="", bg=self.window_color, fg=self.text_color).grid(column=0, row=0)
+		self.Label_Strike=Label(self.OptionPricerLabels,text="Strike:", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=1)
+		self.Label_Time=Label(self.OptionPricerLabels,text="Expiry (in years): ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=2)
+		self.Label_Spot=Label(self.OptionPricerLabels,text="Underlying Price: ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=3)
+		self.Label_Vol=Label(self.OptionPricerLabels,text="Implied Volatility: ", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=4)
+		self.Label_OptionType=Label(self.OptionPricerLabels,text="Option Type", bg=self.window_color, fg=self.text_color, anchor="e", width=15, padx=2, pady=2).grid(column=0, row=5)
 
 		#creates the frame and first entries
-		OptionPricerFrame=Frame(self.OptionPricerWindow, bg=self.window_color, relief=SUNKEN)
+		OptionPricerFrame=Frame(self.OptionPricerWindow, bg=self.window_color)
 		OptionPricerFrame.grid(column=2, row=4, columnspan=2, padx=5, pady=5)
 		OptType=StringVar(OptionPricerFrame)
 		OptType.set(OptionPricer.OptionTypeOptionMenu[0])
 
 
 		Label_LegNumber=Label(OptionPricerFrame, text="Leg "+str(OptionPricer.NumberOfOptions), bg=self.window_color, fg=self.text_color)
-		Entry_Strike=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-		Entry_Time=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-		Entry_Spot=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-		Entry_Vol=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
+		Entry_Strike=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+		Entry_Time=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+		Entry_Spot=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+		Entry_Vol=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
 		Menu_OptionType=OptionMenu(OptionPricerFrame,OptType,*OptionPricer.OptionTypeOptionMenu)
 		Menu_OptionType.config(bg=self.elements_color, fg=self.text_color, activebackground=self.elements_color, activeforeground=self.text_color, width=4, highlightthickness=0)
 		Menu_OptionType["menu"].configure(bg=self.elements_color, fg=self.text_color)
@@ -156,16 +156,16 @@ class OptionPricer(object):
 			OptionPricer.NumberOfOptions+=1
 			self.Width = 250+((OptionPricer.NumberOfOptions-1)*79)
 			self.OptionPricerWindow.geometry(str(self.Width)+"x265")
-			OptionPricerFrame=Frame(self.OptionPricerWindow, bg=self.window_color, relief=SUNKEN)
+			OptionPricerFrame=Frame(self.OptionPricerWindow, bg=self.window_color)
 			OptionPricerFrame.grid(column=2*OptionPricer.NumberOfOptions, row=4, columnspan=2, padx=5, pady=5)
 			OptType=StringVar(OptionPricerFrame)
 			OptType.set(OptionPricer.OptionTypeOptionMenu[0])
 			
 			Label_LegNumber=Label(OptionPricerFrame, text="Leg "+str(OptionPricer.NumberOfOptions), bg=self.window_color, fg=self.text_color)
-			Entry_Strike=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-			Entry_Time=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-			Entry_Spot=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
-			Entry_Vol=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10, relief=SUNKEN)
+			Entry_Strike=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+			Entry_Time=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+			Entry_Spot=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
+			Entry_Vol=Entry(OptionPricerFrame, bg=self.entry_color, fg=self.text_color, width=10)
 			Menu_OptionType=OptionMenu(OptionPricerFrame,OptType,*OptionPricer.OptionTypeOptionMenu)
 			Menu_OptionType.config(bg=self.elements_color, fg=self.text_color, activebackground=self.elements_color, activeforeground=self.text_color, width=4, highlightthickness=0)
 			Menu_OptionType["menu"].configure(bg=self.elements_color, fg=self.text_color)
